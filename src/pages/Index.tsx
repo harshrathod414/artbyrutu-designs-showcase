@@ -55,8 +55,14 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/10 to-secondary/5"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLW9wYWNpdHk9Ii4wNSIvPjwvZz48L3N2Zz4=')] opacity-30"></div>
+        {/* Animated blur background images */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-10 w-72 h-72 rounded-full opacity-20 blur-3xl animate-float" style={{ background: `url(${mehndi1})`, backgroundSize: 'cover', animationDuration: '8s' }}></div>
+          <div className="absolute top-40 right-20 w-96 h-96 rounded-full opacity-15 blur-3xl animate-float" style={{ background: `url(${nailart1})`, backgroundSize: 'cover', animationDuration: '10s', animationDelay: '1s' }}></div>
+          <div className="absolute bottom-20 left-1/4 w-80 h-80 rounded-full opacity-20 blur-3xl animate-float" style={{ background: `url(${mehndi5})`, backgroundSize: 'cover', animationDuration: '12s', animationDelay: '2s' }}></div>
+          <div className="absolute bottom-40 right-1/4 w-64 h-64 rounded-full opacity-25 blur-3xl animate-float" style={{ background: `url(${nailart5})`, backgroundSize: 'cover', animationDuration: '9s', animationDelay: '0.5s' }}></div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background/80 to-accent/10 backdrop-blur-sm"></div>
         
         <div className="container mx-auto px-4 text-center relative z-10 py-20">
           <div className="animate-fade-in-up">
