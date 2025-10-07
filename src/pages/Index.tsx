@@ -1,6 +1,7 @@
-import { Instagram, Phone, MessageCircle } from "lucide-react";
+import { Instagram, Phone, MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useState } from "react";
 
 // Import all images
 import mehndi1 from "@/assets/mehndi-1.jpg";
@@ -48,67 +49,74 @@ const galleryImages = [
 ];
 
 const Index = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 md:py-32 bg-gradient-to-br from-primary/5 via-accent/5 to-background">
-        <div className="container mx-auto max-w-6xl text-center">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            artbyrutu
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Exquisite Mehndi & Nail Art Designs
-          </p>
-          <p className="text-base md:text-lg text-foreground/80 max-w-3xl mx-auto mb-12">
-            Transform your special moments with stunning mehndi designs and creative nail art. 
-            From traditional bridal mehndi to modern nail art, we bring your vision to life.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button size="lg" className="text-lg" asChild>
-              <a href="#gallery">View Gallery</a>
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg" asChild>
-              <a href="#contact">Book Now</a>
-            </Button>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/10 to-secondary/5"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLW9wYWNpdHk9Ii4wNSIvPjwvZz48L3N2Zz4=')] opacity-30"></div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10 py-20">
+          <div className="animate-fade-in-up">
+            <Sparkles className="w-12 h-12 mx-auto mb-6 text-primary animate-float" />
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
+              artbyrutu
+            </h1>
+            <p className="text-2xl md:text-3xl text-foreground/80 mb-6 max-w-2xl mx-auto font-light">
+              Exquisite Mehndi & Nail Art Designs
+            </p>
+            <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
+              Transform your hands into works of art with intricate mehndi designs and stunning nail artistry
+            </p>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 transform hover:scale-105" asChild>
+                <a href="#gallery">View Gallery</a>
+              </Button>
+              <Button size="lg" variant="outline" className="border-2 hover:bg-primary/10 transition-all duration-300 transform hover:scale-105" asChild>
+                <a href="#contact">Book Now</a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="py-16 px-4 md:py-24 bg-secondary/30">
+      <section className="py-20 px-4 bg-gradient-to-b from-secondary/10 to-transparent">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 About artbyrutu
               </h2>
-              <p className="text-lg text-muted-foreground mb-4">
+              <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
                 Welcome to artbyrutu, where tradition meets creativity. We specialize in creating 
                 breathtaking mehndi designs and unique nail art that reflect your personality and style.
               </p>
-              <p className="text-lg text-muted-foreground mb-4">
+              <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
                 With years of experience and a passion for artistry, we've adorned countless brides, 
                 celebrants, and fashion enthusiasts with our intricate designs.
               </p>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 Every design is crafted with precision, care, and attention to detail, ensuring 
                 you look and feel your absolute best.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-center backdrop-blur-sm bg-card/50 border-2 hover:shadow-[var(--shadow-elegant)] transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-scale-in" style={{ animationDelay: '0ms' }}>
                 <div className="text-4xl font-bold text-primary mb-2">500+</div>
                 <div className="text-sm text-muted-foreground">Happy Clients</div>
               </Card>
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-center backdrop-blur-sm bg-card/50 border-2 hover:shadow-[var(--shadow-elegant)] transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-scale-in" style={{ animationDelay: '100ms' }}>
                 <div className="text-4xl font-bold text-accent mb-2">5+</div>
                 <div className="text-sm text-muted-foreground">Years Experience</div>
               </Card>
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-center backdrop-blur-sm bg-card/50 border-2 hover:shadow-[var(--shadow-elegant)] transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-scale-in" style={{ animationDelay: '200ms' }}>
                 <div className="text-4xl font-bold text-primary mb-2">100+</div>
                 <div className="text-sm text-muted-foreground">Unique Designs</div>
               </Card>
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-center backdrop-blur-sm bg-card/50 border-2 hover:shadow-[var(--shadow-elegant)] transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-scale-in" style={{ animationDelay: '300ms' }}>
                 <div className="text-4xl font-bold text-accent mb-2">4.9★</div>
                 <div className="text-sm text-muted-foreground">Client Rating</div>
               </Card>
@@ -118,10 +126,10 @@ const Index = () => {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="py-16 px-4 md:py-24">
+      <section id="gallery" className="py-20 px-4 bg-gradient-to-b from-transparent via-secondary/10 to-transparent">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               Our Work
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -133,17 +141,25 @@ const Index = () => {
             {galleryImages.map((image, index) => (
               <Card 
                 key={index} 
-                className="overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
+                className="overflow-hidden group cursor-pointer border-2 hover:border-primary/50 transition-all duration-500 hover:shadow-[var(--shadow-elegant)] animate-scale-in"
+                style={{ animationDelay: `${index * 30}ms` }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
                 <div className="relative aspect-square overflow-hidden">
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-500"
+                    style={{
+                      transform: hoveredIndex === index 
+                        ? 'scale(1.15) rotateZ(2deg)' 
+                        : 'scale(1) rotateZ(0deg)',
+                    }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white text-sm font-medium capitalize">
-                      {image.category}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-4">
+                    <p className="text-white text-sm font-semibold capitalize transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      {image.category} • Design {(index % 10) + 1}
                     </p>
                   </div>
                 </div>
@@ -154,52 +170,55 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 px-4 md:py-24 bg-gradient-to-br from-primary/5 via-accent/5 to-background">
+      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/10">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent animate-fade-in">
             Get in Touch
           </h2>
-          <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto animate-fade-in-up">
             Ready to book your appointment? Contact us through your preferred platform
           </p>
           
-          <div className="flex flex-wrap gap-6 justify-center">
-            <Button 
-              size="lg" 
-              className="text-lg flex items-center gap-3 px-8"
-              asChild
-            >
-              <a href="https://instagram.com/artbyrutu" target="_blank" rel="noopener noreferrer">
-                <Instagram className="w-5 h-5" />
-                Instagram
-              </a>
-            </Button>
-            
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="text-lg flex items-center gap-3 px-8"
-              asChild
-            >
-              <a href="tel:+1234567890">
-                <Phone className="w-5 h-5" />
-                Call Us
-              </a>
-            </Button>
-            
-            <Button 
-              size="lg" 
-              className="text-lg flex items-center gap-3 px-8 bg-accent hover:bg-accent/90"
-              asChild
-            >
-              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="w-5 h-5" />
-                WhatsApp
-              </a>
-            </Button>
-          </div>
+          <Card className="p-8 backdrop-blur-sm bg-card/50 border-2 hover:shadow-[var(--shadow-elegant)] transition-all duration-500 animate-scale-in mb-12">
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="flex items-center gap-3 px-8 bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                asChild
+              >
+                <a href="https://instagram.com/artbyrutu" target="_blank" rel="noopener noreferrer">
+                  <Instagram className="w-5 h-5" />
+                  Instagram
+                </a>
+              </Button>
+              
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="flex items-center gap-3 px-8 border-2 hover:bg-primary/10 hover:border-primary transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                asChild
+              >
+                <a href="tel:+1234567890">
+                  <Phone className="w-5 h-5" />
+                  Call Us
+                </a>
+              </Button>
+              
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="flex items-center gap-3 px-8 border-2 hover:bg-accent/10 hover:border-accent transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                asChild
+              >
+                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="w-5 h-5" />
+                  WhatsApp
+                </a>
+              </Button>
+            </div>
+          </Card>
 
-          <Card className="mt-12 p-8 max-w-2xl mx-auto">
+          <Card className="p-8 max-w-2xl mx-auto backdrop-blur-sm bg-card/50 border-2 hover:shadow-[var(--shadow-elegant)] transition-all duration-500 animate-fade-in">
             <h3 className="text-xl font-semibold mb-4 text-foreground">Business Hours</h3>
             <div className="space-y-2 text-muted-foreground">
               <p>Monday - Saturday: 10:00 AM - 7:00 PM</p>
