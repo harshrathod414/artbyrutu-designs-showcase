@@ -55,23 +55,36 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated blur background images */}
+        {/* Animated blur background images - Multiple layers for rich effect */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 left-10 w-96 h-96 animate-float">
-            <img src={mehndi1} alt="" className="w-full h-full object-cover rounded-full blur-[100px] opacity-30" />
+          {/* Large mehndi patterns */}
+          <div className="absolute -top-20 -left-20 w-[600px] h-[600px] animate-float">
+            <img src={mehndi2} alt="" className="w-full h-full object-cover blur-[80px] opacity-40" style={{ animationDuration: '10s' }} />
           </div>
-          <div className="absolute top-1/4 right-10 w-[500px] h-[500px] animate-float" style={{ animationDelay: '1s' }}>
-            <img src={nailart3} alt="" className="w-full h-full object-cover rounded-full blur-[120px] opacity-25" />
+          <div className="absolute top-1/4 -right-32 w-[700px] h-[700px] animate-float" style={{ animationDelay: '2s' }}>
+            <img src={mehndi8} alt="" className="w-full h-full object-cover blur-[90px] opacity-35" style={{ animationDuration: '12s' }} />
           </div>
-          <div className="absolute bottom-20 left-1/4 w-80 h-80 animate-float" style={{ animationDelay: '2s' }}>
-            <img src={mehndi5} alt="" className="w-full h-full object-cover rounded-full blur-[100px] opacity-30" />
+          <div className="absolute -bottom-32 left-1/4 w-[550px] h-[550px] animate-float" style={{ animationDelay: '4s' }}>
+            <img src={mehndi4} alt="" className="w-full h-full object-cover blur-[85px] opacity-38" style={{ animationDuration: '11s' }} />
           </div>
-          <div className="absolute bottom-1/4 right-1/4 w-72 h-72 animate-float" style={{ animationDelay: '0.5s' }}>
-            <img src={nailart7} alt="" className="w-full h-full object-cover rounded-full blur-[100px] opacity-25" />
+          
+          {/* Nail art accents */}
+          <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] animate-float" style={{ animationDelay: '1s' }}>
+            <img src={nailart5} alt="" className="w-full h-full object-cover blur-[70px] opacity-35" style={{ animationDuration: '9s' }} />
           </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/10 to-accent/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-[450px] h-[450px] animate-float" style={{ animationDelay: '3s' }}>
+            <img src={nailart2} alt="" className="w-full h-full object-cover blur-[75px] opacity-32" style={{ animationDuration: '10s' }} />
+          </div>
+          
+          {/* Additional subtle layers */}
+          <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] animate-float" style={{ animationDelay: '5s' }}>
+            <img src={mehndi6} alt="" className="w-full h-full object-cover blur-[95px] opacity-30" style={{ animationDuration: '13s' }} />
+          </div>
+          
+          {/* Gradient overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 animate-pulse" style={{ animationDuration: '4s' }}></div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/70 to-background/80 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-background/85 via-background/75 to-background/85"></div>
         
         <div className="container mx-auto px-4 text-center relative z-10 py-20">
           <div className="animate-fade-in-up">
