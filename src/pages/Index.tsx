@@ -1,4 +1,4 @@
-import { Instagram, Phone, MessageCircle, Sparkles } from "lucide-react";
+import { Instagram, Phone, MessageCircle, Sparkles, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
@@ -57,30 +57,42 @@ const Index = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated blur background images */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 left-10 w-72 h-72 rounded-full opacity-20 blur-3xl animate-float" style={{ background: `url(${mehndi1})`, backgroundSize: 'cover', animationDuration: '8s' }}></div>
-          <div className="absolute top-40 right-20 w-96 h-96 rounded-full opacity-15 blur-3xl animate-float" style={{ background: `url(${nailart1})`, backgroundSize: 'cover', animationDuration: '10s', animationDelay: '1s' }}></div>
-          <div className="absolute bottom-20 left-1/4 w-80 h-80 rounded-full opacity-20 blur-3xl animate-float" style={{ background: `url(${mehndi5})`, backgroundSize: 'cover', animationDuration: '12s', animationDelay: '2s' }}></div>
-          <div className="absolute bottom-40 right-1/4 w-64 h-64 rounded-full opacity-25 blur-3xl animate-float" style={{ background: `url(${nailart5})`, backgroundSize: 'cover', animationDuration: '9s', animationDelay: '0.5s' }}></div>
+          <div className="absolute top-10 left-10 w-96 h-96 animate-float">
+            <img src={mehndi1} alt="" className="w-full h-full object-cover rounded-full blur-[100px] opacity-30" />
+          </div>
+          <div className="absolute top-1/4 right-10 w-[500px] h-[500px] animate-float" style={{ animationDelay: '1s' }}>
+            <img src={nailart3} alt="" className="w-full h-full object-cover rounded-full blur-[120px] opacity-25" />
+          </div>
+          <div className="absolute bottom-20 left-1/4 w-80 h-80 animate-float" style={{ animationDelay: '2s' }}>
+            <img src={mehndi5} alt="" className="w-full h-full object-cover rounded-full blur-[100px] opacity-30" />
+          </div>
+          <div className="absolute bottom-1/4 right-1/4 w-72 h-72 animate-float" style={{ animationDelay: '0.5s' }}>
+            <img src={nailart7} alt="" className="w-full h-full object-cover rounded-full blur-[100px] opacity-25" />
+          </div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/10 to-accent/10 rounded-full blur-3xl animate-pulse"></div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background/80 to-accent/10 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/70 to-background/80 backdrop-blur-sm"></div>
         
         <div className="container mx-auto px-4 text-center relative z-10 py-20">
           <div className="animate-fade-in-up">
-            <Sparkles className="w-12 h-12 mx-auto mb-6 text-primary animate-float" />
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
+            <Heart className="w-14 h-14 mx-auto mb-6 text-primary animate-bounce-gentle drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]" fill="currentColor" />
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer drop-shadow-2xl">
               artbyrutu
             </h1>
-            <p className="text-2xl md:text-3xl text-foreground/80 mb-6 max-w-2xl mx-auto font-light">
+            <p className="text-2xl md:text-4xl text-primary font-semibold mb-6 max-w-2xl mx-auto animate-fade-in-up drop-shadow-lg" style={{ animationDelay: '0.2s' }}>
               Exquisite Mehndi & Nail Art Designs
             </p>
-            <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-foreground/80 mb-12 max-w-xl mx-auto leading-relaxed font-medium animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               Transform your hands into works of art with intricate mehndi designs and stunning nail artistry
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 transform hover:scale-105" asChild>
-                <a href="#gallery">View Gallery</a>
+            <div className="flex gap-4 justify-center flex-wrap animate-scale-in" style={{ animationDelay: '0.6s' }}>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-glow)] transition-all duration-300 transform hover:scale-110 text-lg" asChild>
+                <a href="#gallery">
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  View Gallery
+                </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-2 hover:bg-primary/10 transition-all duration-300 transform hover:scale-105" asChild>
+              <Button size="lg" variant="outline" className="border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 transform hover:scale-110 text-lg" asChild>
                 <a href="#contact">Book Now</a>
               </Button>
             </div>
