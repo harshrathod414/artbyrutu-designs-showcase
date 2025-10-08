@@ -50,9 +50,60 @@ const galleryImages = [
 
 const Index = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setMousePosition({
+      x: (e.clientX / window.innerWidth - 0.5) * 20,
+      y: (e.clientY / window.innerHeight - 0.5) * 20,
+    });
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background" onMouseMove={handleMouseMove}>
+      {/* Floating decorative mehndi elements */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div 
+          className="absolute top-20 left-10 w-32 h-32 opacity-20 animate-float"
+          style={{ 
+            animationDuration: '8s',
+            transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
+          }}
+        >
+          <img src={mehndi3} alt="" className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(236,72,153,0.6)]" />
+        </div>
+        <div 
+          className="absolute top-1/3 right-16 w-24 h-24 opacity-15 animate-float"
+          style={{ 
+            animationDuration: '10s',
+            animationDelay: '2s',
+            transform: `translate(${-mousePosition.x * 0.8}px, ${-mousePosition.y * 0.8}px)`
+          }}
+        >
+          <img src={nailart4} alt="" className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(217,119,6,0.6)]" />
+        </div>
+        <div 
+          className="absolute bottom-32 left-1/4 w-28 h-28 opacity-15 animate-float"
+          style={{ 
+            animationDuration: '12s',
+            animationDelay: '4s',
+            transform: `translate(${mousePosition.x * 0.6}px, ${mousePosition.y * 0.6}px)`
+          }}
+        >
+          <img src={mehndi7} alt="" className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(236,72,153,0.5)]" />
+        </div>
+        <div 
+          className="absolute bottom-1/4 right-1/3 w-20 h-20 opacity-20 animate-float"
+          style={{ 
+            animationDuration: '9s',
+            animationDelay: '1s',
+            transform: `translate(${-mousePosition.x * 1.2}px, ${-mousePosition.y * 1.2}px)`
+          }}
+        >
+          <img src={nailart8} alt="" className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(217,119,6,0.5)]" />
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated blur background images - Multiple layers for rich effect */}
@@ -168,12 +219,18 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 perspective-1000">
             {galleryImages.map((image, index) => (
               <Card 
                 key={index} 
                 className="overflow-hidden group cursor-pointer border-2 hover:border-primary/50 transition-all duration-500 hover:shadow-[var(--shadow-elegant)] animate-scale-in"
-                style={{ animationDelay: `${index * 30}ms` }}
+                style={{ 
+                  animationDelay: `${index * 30}ms`,
+                  transformStyle: 'preserve-3d',
+                  transform: hoveredIndex === index 
+                    ? 'translateZ(40px) rotateX(5deg) rotateY(5deg)' 
+                    : 'translateZ(0) rotateX(0) rotateY(0)',
+                }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
@@ -181,18 +238,33 @@ const Index = () => {
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover transition-all duration-500"
+                    className="w-full h-full object-cover transition-all duration-700"
                     style={{
                       transform: hoveredIndex === index 
-                        ? 'scale(1.15) rotateZ(2deg)' 
+                        ? 'scale(1.2) rotateZ(3deg)' 
                         : 'scale(1) rotateZ(0deg)',
+                      filter: hoveredIndex === index ? 'brightness(1.1)' : 'brightness(1)',
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-4">
-                    <p className="text-white text-sm font-semibold capitalize transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      {image.category} • Design {(index % 10) + 1}
-                    </p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-4">
+                    <div className="transform translate-y-8 group-hover:translate-y-0 transition-all duration-500">
+                      <p className="text-white text-sm font-semibold capitalize mb-1 drop-shadow-lg">
+                        {image.category} • Design {(index % 10) + 1}
+                      </p>
+                      <div className="flex gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Sparkles key={i} className="w-3 h-3 text-white/80 animate-pulse" style={{ animationDelay: `${i * 100}ms` }} />
+                        ))}
+                      </div>
+                    </div>
                   </div>
+                  {/* 3D depth effect overlay */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(236,72,153,0.1) 0%, rgba(217,119,6,0.1) 100%)',
+                    }}
+                  />
                 </div>
               </Card>
             ))}
