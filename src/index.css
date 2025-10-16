@@ -172,6 +172,54 @@ All colors MUST be HSL.
     }
   }
 
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.3) translateY(-50px);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes fade-in-scale {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slide-up-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes rotate-slow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   .animate-shimmer {
     animation: shimmer 3s linear infinite;
   }
@@ -190,5 +238,41 @@ All colors MUST be HSL.
 
   .animate-slide-in-right {
     animation: slide-in-right 0.8s ease-out forwards;
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  .animate-fade-in-scale {
+    animation: fade-in-scale 0.8s ease-out forwards;
+  }
+
+  .animate-slide-up-fade {
+    animation: slide-up-fade 0.8s ease-out forwards;
+  }
+
+  .animate-rotate-slow {
+    animation: rotate-slow 20s linear infinite;
+  }
+
+  /* Mobile-specific smooth scrolling */
+  @media (max-width: 768px) {
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Mobile touch animations */
+    .mobile-touch-bounce {
+      transition: transform 0.2s ease;
+    }
+    
+    .mobile-touch-bounce:active {
+      transform: scale(0.95);
+    }
   }
 }

@@ -1,7 +1,7 @@
 import { Instagram, Phone, MessageCircle, Sparkles, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Import all images
 import mehndi1 from "@/assets/mehndi-1.jpg";
@@ -50,11 +50,44 @@ const galleryImages = [
 
 const Index = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleSections((prev) => new Set(prev).add(entry.target.id));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach((section) => observer.observe(section));
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        style={{
+          transform: `translateY(${scrollY * 0.3}px)`,
+          transition: 'transform 0.1s ease-out'
+        }}
+      >
         {/* Animated blur background images - Multiple layers for rich effect */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Large mehndi patterns */}
@@ -103,21 +136,21 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-muted-foreground/90 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               Transform your hands into masterpieces with intricate designs and stunning artistry
             </p>
-            <div className="flex gap-6 justify-center flex-wrap animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+            <div className="flex gap-4 md:gap-6 justify-center flex-wrap animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] hover:bg-[length:100%_auto] animate-shimmer hover:animate-pulse-glow transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 text-lg px-8 py-6 rounded-2xl font-semibold shadow-elegant" 
+                className="mobile-touch-bounce bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] hover:bg-[length:100%_auto] animate-shimmer hover:animate-pulse-glow active:scale-95 transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 text-base md:text-lg px-6 md:px-8 py-5 md:py-6 rounded-2xl font-semibold shadow-elegant" 
                 asChild
               >
                 <a href="#gallery" className="flex items-center gap-2">
-                  <Sparkles className="w-6 h-6 animate-spin-slow" />
+                  <Sparkles className="w-5 h-5 md:w-6 md:h-6 animate-spin-slow" />
                   View Gallery
                 </a>
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-primary/60 hover:border-primary hover:bg-gradient-to-r hover:from-primary/20 hover:to-accent/20 backdrop-blur-sm transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 text-lg px-8 py-6 rounded-2xl font-semibold hover:shadow-elegant" 
+                className="mobile-touch-bounce border-2 border-primary/60 hover:border-primary hover:bg-gradient-to-r hover:from-primary/20 hover:to-accent/20 backdrop-blur-sm active:scale-95 transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 text-base md:text-lg px-6 md:px-8 py-5 md:py-6 rounded-2xl font-semibold hover:shadow-elegant" 
                 asChild
               >
                 <a href="#contact">Book Now</a>
@@ -128,7 +161,7 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-24 px-4 bg-gradient-to-b from-secondary/10 to-transparent">
+      <section id="about" className={`py-24 px-4 bg-gradient-to-b from-secondary/10 to-transparent transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-16 items-center animate-fade-in">
             <div className="space-y-6">
@@ -149,21 +182,21 @@ const Index = () => {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6">
-              <Card className="p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-primary/30 hover:border-primary hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-scale-in rounded-2xl hover:animate-pulse-glow" style={{ animationDelay: '0ms' }}>
-                <div className="text-5xl font-bold text-primary mb-3 animate-fade-in-down">500+</div>
-                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Happy Clients</div>
+              <Card className="mobile-touch-bounce p-6 md:p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-primary/30 hover:border-primary active:border-primary hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-bounce-in rounded-2xl hover:animate-pulse-glow cursor-pointer" style={{ animationDelay: '0ms' }}>
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2 md:mb-3 animate-fade-in-down">500+</div>
+                <div className="text-xs md:text-sm font-medium text-muted-foreground uppercase tracking-wide">Happy Clients</div>
               </Card>
-              <Card className="p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-accent/30 hover:border-accent hover:shadow-2xl hover:shadow-accent/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-scale-in rounded-2xl hover:animate-pulse-glow" style={{ animationDelay: '100ms' }}>
-                <div className="text-5xl font-bold text-accent mb-3 animate-fade-in-down" style={{ animationDelay: '100ms' }}>5+</div>
-                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Years Experience</div>
+              <Card className="mobile-touch-bounce p-6 md:p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-accent/30 hover:border-accent active:border-accent hover:shadow-2xl hover:shadow-accent/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-bounce-in rounded-2xl hover:animate-pulse-glow cursor-pointer" style={{ animationDelay: '100ms' }}>
+                <div className="text-4xl md:text-5xl font-bold text-accent mb-2 md:mb-3 animate-fade-in-down" style={{ animationDelay: '100ms' }}>5+</div>
+                <div className="text-xs md:text-sm font-medium text-muted-foreground uppercase tracking-wide">Years Experience</div>
               </Card>
-              <Card className="p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-primary/30 hover:border-primary hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-scale-in rounded-2xl hover:animate-pulse-glow" style={{ animationDelay: '200ms' }}>
-                <div className="text-5xl font-bold text-primary mb-3 animate-fade-in-down" style={{ animationDelay: '200ms' }}>100+</div>
-                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Unique Designs</div>
+              <Card className="mobile-touch-bounce p-6 md:p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-primary/30 hover:border-primary active:border-primary hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-bounce-in rounded-2xl hover:animate-pulse-glow cursor-pointer" style={{ animationDelay: '200ms' }}>
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2 md:mb-3 animate-fade-in-down" style={{ animationDelay: '200ms' }}>100+</div>
+                <div className="text-xs md:text-sm font-medium text-muted-foreground uppercase tracking-wide">Unique Designs</div>
               </Card>
-              <Card className="p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-accent/30 hover:border-accent hover:shadow-2xl hover:shadow-accent/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-scale-in rounded-2xl hover:animate-pulse-glow" style={{ animationDelay: '300ms' }}>
-                <div className="text-5xl font-bold text-accent mb-3 animate-fade-in-down" style={{ animationDelay: '300ms' }}>4.9★</div>
-                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Client Rating</div>
+              <Card className="mobile-touch-bounce p-6 md:p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-accent/30 hover:border-accent active:border-accent hover:shadow-2xl hover:shadow-accent/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-bounce-in rounded-2xl hover:animate-pulse-glow cursor-pointer" style={{ animationDelay: '300ms' }}>
+                <div className="text-4xl md:text-5xl font-bold text-accent mb-2 md:mb-3 animate-fade-in-down" style={{ animationDelay: '300ms' }}>4.9★</div>
+                <div className="text-xs md:text-sm font-medium text-muted-foreground uppercase tracking-wide">Client Rating</div>
               </Card>
             </div>
           </div>
@@ -171,7 +204,7 @@ const Index = () => {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="py-24 px-4 bg-gradient-to-b from-transparent via-secondary/10 to-transparent">
+      <section id="gallery" className={`py-24 px-4 bg-gradient-to-b from-transparent via-secondary/10 to-transparent transition-all duration-1000 ${visibleSections.has('gallery') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-20 animate-fade-in space-y-4">
             <h2 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
@@ -186,29 +219,31 @@ const Index = () => {
             {galleryImages.map((image, index) => (
               <Card 
                 key={index} 
-                className="overflow-hidden group cursor-pointer border-2 border-border/50 hover:border-primary transition-all duration-700 hover:shadow-2xl hover:shadow-primary/40 animate-scale-in rounded-2xl backdrop-blur-sm bg-card/50 hover:animate-pulse-glow"
+                className="mobile-touch-bounce overflow-hidden group cursor-pointer border-2 border-border/50 hover:border-primary active:border-primary transition-all duration-700 hover:shadow-2xl hover:shadow-primary/40 active:shadow-2xl active:shadow-primary/40 animate-fade-in-scale rounded-2xl backdrop-blur-sm bg-card/50 hover:animate-pulse-glow"
                 style={{ animationDelay: `${index * 50}ms` }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                onTouchStart={() => setHoveredIndex(index)}
+                onTouchEnd={() => setTimeout(() => setHoveredIndex(null), 2000)}
               >
                 <div className="relative aspect-square overflow-hidden">
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover transition-all duration-700 group-hover:brightness-110"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:brightness-110 group-active:brightness-110"
                     style={{
                       transform: hoveredIndex === index 
                         ? 'scale(1.15) rotate(2deg)' 
                         : 'scale(1) rotate(0deg)',
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-accent/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-end p-6">
-                    <p className="text-white text-lg font-bold capitalize transform translate-y-8 group-hover:translate-y-0 transition-all duration-700 drop-shadow-2xl animate-slide-up">
+                  <div className={`absolute inset-0 bg-gradient-to-t from-primary via-accent/30 to-transparent transition-all duration-700 flex items-end p-4 md:p-6 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`}>
+                    <p className={`text-white text-base md:text-lg font-bold capitalize transition-all duration-700 drop-shadow-2xl ${hoveredIndex === index ? 'translate-y-0 animate-slide-up-fade' : 'translate-y-8'}`}>
                       {image.category} • Design {(index % 10) + 1}
                     </p>
                   </div>
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
-                    <Sparkles className="w-6 h-6 text-white animate-spin-slow" />
+                  <div className={`absolute top-3 right-3 md:top-4 md:right-4 transition-all duration-500 ${hoveredIndex === index ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
+                    <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-white animate-rotate-slow" />
                   </div>
                 </div>
               </Card>
@@ -218,7 +253,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-4 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/10">
+      <section id="contact" className={`py-24 px-4 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/10 transition-all duration-1000 ${visibleSections.has('contact') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent animate-fade-in">
             Get in Touch
@@ -227,15 +262,15 @@ const Index = () => {
             Ready to book your appointment? Contact us through your preferred platform
           </p>
           
-          <Card className="p-10 backdrop-blur-sm bg-card/90 border-2 border-primary/30 hover:border-primary hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 animate-scale-in mb-16 rounded-2xl hover:animate-pulse-glow">
-            <div className="flex flex-wrap gap-6 justify-center">
+          <Card className="p-6 md:p-10 backdrop-blur-sm bg-card/90 border-2 border-primary/30 hover:border-primary hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 animate-bounce-in mb-16 rounded-2xl hover:animate-pulse-glow">
+            <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
               <Button 
                 size="lg" 
-                className="flex items-center gap-3 px-10 py-6 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-shimmer hover:shadow-2xl hover:shadow-primary/60 transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 rounded-xl text-lg font-semibold"
+                className="mobile-touch-bounce flex items-center gap-2 md:gap-3 px-6 md:px-10 py-5 md:py-6 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-shimmer hover:shadow-2xl hover:shadow-primary/60 active:shadow-2xl active:shadow-primary/60 active:scale-95 transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 rounded-xl text-base md:text-lg font-semibold"
                 asChild
               >
                 <a href="https://instagram.com/artbyrutu" target="_blank" rel="noopener noreferrer">
-                  <Instagram className="w-6 h-6" />
+                  <Instagram className="w-5 h-5 md:w-6 md:h-6" />
                   Instagram
                 </a>
               </Button>
@@ -243,11 +278,11 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="flex items-center gap-3 px-10 py-6 border-2 border-primary/60 hover:border-primary hover:bg-gradient-to-r hover:from-primary/20 hover:to-accent/20 backdrop-blur-sm transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 rounded-xl text-lg font-semibold hover:shadow-elegant"
+                className="mobile-touch-bounce flex items-center gap-2 md:gap-3 px-6 md:px-10 py-5 md:py-6 border-2 border-primary/60 hover:border-primary active:border-primary hover:bg-gradient-to-r hover:from-primary/20 hover:to-accent/20 active:bg-gradient-to-r active:from-primary/20 active:to-accent/20 backdrop-blur-sm active:scale-95 transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 rounded-xl text-base md:text-lg font-semibold hover:shadow-elegant"
                 asChild
               >
                 <a href="tel:+1234567890">
-                  <Phone className="w-6 h-6" />
+                  <Phone className="w-5 h-5 md:w-6 md:h-6" />
                   Call Us
                 </a>
               </Button>
@@ -255,11 +290,11 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="flex items-center gap-3 px-10 py-6 border-2 border-accent/60 hover:border-accent hover:bg-gradient-to-r hover:from-accent/20 hover:to-primary/20 backdrop-blur-sm transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 rounded-xl text-lg font-semibold hover:shadow-elegant"
+                className="mobile-touch-bounce flex items-center gap-2 md:gap-3 px-6 md:px-10 py-5 md:py-6 border-2 border-accent/60 hover:border-accent active:border-accent hover:bg-gradient-to-r hover:from-accent/20 hover:to-primary/20 active:bg-gradient-to-r active:from-accent/20 active:to-primary/20 backdrop-blur-sm active:scale-95 transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 rounded-xl text-base md:text-lg font-semibold hover:shadow-elegant"
                 asChild
               >
                 <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-6 h-6" />
+                  <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
                   WhatsApp
                 </a>
               </Button>
