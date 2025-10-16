@@ -88,17 +88,13 @@ const Index = () => {
         
         <div className="container mx-auto px-4 text-center relative z-10 py-20">
           <div className="animate-fade-in-up space-y-8">
-            <div className="inline-block">
+            <div className="inline-block animate-bounce-gentle">
               <Heart 
-                className="w-16 h-16 mx-auto mb-4 text-primary drop-shadow-2xl" 
+                className="w-20 h-20 mx-auto mb-6 text-primary animate-glow-pulse" 
                 fill="currentColor"
-                style={{
-                  filter: 'drop-shadow(0 0 25px rgba(236, 72, 153, 0.6))',
-                  animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-                }}
               />
             </div>
-            <h1 className="text-7xl md:text-9xl font-bold mb-8 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer tracking-tight">
+            <h1 className="text-7xl md:text-9xl font-bold mb-8 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer tracking-tight drop-shadow-2xl">
               artbyrutu
             </h1>
             <p className="text-3xl md:text-5xl font-bold text-primary mb-6 max-w-3xl mx-auto animate-fade-in-up tracking-wide" style={{ animationDelay: '0.2s', textShadow: '0 2px 10px rgba(236, 72, 153, 0.2)' }}>
@@ -107,21 +103,21 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-muted-foreground/90 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               Transform your hands into masterpieces with intricate designs and stunning artistry
             </p>
-            <div className="flex gap-6 justify-center flex-wrap animate-scale-in" style={{ animationDelay: '0.6s' }}>
+            <div className="flex gap-6 justify-center flex-wrap animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-primary to-accent hover:shadow-2xl hover:shadow-primary/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 text-lg px-8 py-6 rounded-2xl font-semibold" 
+                className="bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] hover:bg-[length:100%_auto] animate-shimmer hover:animate-pulse-glow transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 text-lg px-8 py-6 rounded-2xl font-semibold shadow-elegant" 
                 asChild
               >
                 <a href="#gallery" className="flex items-center gap-2">
-                  <Sparkles className="w-6 h-6" />
+                  <Sparkles className="w-6 h-6 animate-spin-slow" />
                   View Gallery
                 </a>
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-primary/50 hover:border-primary hover:bg-primary/10 backdrop-blur-sm transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 text-lg px-8 py-6 rounded-2xl font-semibold" 
+                className="border-2 border-primary/60 hover:border-primary hover:bg-gradient-to-r hover:from-primary/20 hover:to-accent/20 backdrop-blur-sm transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 text-lg px-8 py-6 rounded-2xl font-semibold hover:shadow-elegant" 
                 asChild
               >
                 <a href="#contact">Book Now</a>
@@ -153,20 +149,20 @@ const Index = () => {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6">
-              <Card className="p-8 text-center backdrop-blur-sm bg-card/80 border-2 border-primary/20 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-scale-in rounded-2xl" style={{ animationDelay: '0ms' }}>
-                <div className="text-5xl font-bold text-primary mb-3">500+</div>
+              <Card className="p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-primary/30 hover:border-primary hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-scale-in rounded-2xl hover:animate-pulse-glow" style={{ animationDelay: '0ms' }}>
+                <div className="text-5xl font-bold text-primary mb-3 animate-fade-in-down">500+</div>
                 <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Happy Clients</div>
               </Card>
-              <Card className="p-8 text-center backdrop-blur-sm bg-card/80 border-2 border-accent/20 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/20 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-scale-in rounded-2xl" style={{ animationDelay: '100ms' }}>
-                <div className="text-5xl font-bold text-accent mb-3">5+</div>
+              <Card className="p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-accent/30 hover:border-accent hover:shadow-2xl hover:shadow-accent/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-scale-in rounded-2xl hover:animate-pulse-glow" style={{ animationDelay: '100ms' }}>
+                <div className="text-5xl font-bold text-accent mb-3 animate-fade-in-down" style={{ animationDelay: '100ms' }}>5+</div>
                 <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Years Experience</div>
               </Card>
-              <Card className="p-8 text-center backdrop-blur-sm bg-card/80 border-2 border-primary/20 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-scale-in rounded-2xl" style={{ animationDelay: '200ms' }}>
-                <div className="text-5xl font-bold text-primary mb-3">100+</div>
+              <Card className="p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-primary/30 hover:border-primary hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-scale-in rounded-2xl hover:animate-pulse-glow" style={{ animationDelay: '200ms' }}>
+                <div className="text-5xl font-bold text-primary mb-3 animate-fade-in-down" style={{ animationDelay: '200ms' }}>100+</div>
                 <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Unique Designs</div>
               </Card>
-              <Card className="p-8 text-center backdrop-blur-sm bg-card/80 border-2 border-accent/20 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/20 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-scale-in rounded-2xl" style={{ animationDelay: '300ms' }}>
-                <div className="text-5xl font-bold text-accent mb-3">4.9★</div>
+              <Card className="p-8 text-center backdrop-blur-sm bg-card/90 border-2 border-accent/30 hover:border-accent hover:shadow-2xl hover:shadow-accent/30 transition-all duration-700 transform hover:scale-110 hover:-translate-y-3 animate-scale-in rounded-2xl hover:animate-pulse-glow" style={{ animationDelay: '300ms' }}>
+                <div className="text-5xl font-bold text-accent mb-3 animate-fade-in-down" style={{ animationDelay: '300ms' }}>4.9★</div>
                 <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Client Rating</div>
               </Card>
             </div>
@@ -190,8 +186,8 @@ const Index = () => {
             {galleryImages.map((image, index) => (
               <Card 
                 key={index} 
-                className="overflow-hidden group cursor-pointer border-2 border-border hover:border-primary/50 transition-all duration-700 hover:shadow-2xl hover:shadow-primary/20 animate-scale-in rounded-2xl"
-                style={{ animationDelay: `${index * 40}ms` }}
+                className="overflow-hidden group cursor-pointer border-2 border-border/50 hover:border-primary transition-all duration-700 hover:shadow-2xl hover:shadow-primary/40 animate-scale-in rounded-2xl backdrop-blur-sm bg-card/50 hover:animate-pulse-glow"
+                style={{ animationDelay: `${index * 50}ms` }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
@@ -199,17 +195,20 @@ const Index = () => {
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover transition-all duration-700"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:brightness-110"
                     style={{
                       transform: hoveredIndex === index 
-                        ? 'scale(1.1)' 
-                        : 'scale(1)',
+                        ? 'scale(1.15) rotate(2deg)' 
+                        : 'scale(1) rotate(0deg)',
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
-                    <p className="text-white text-base font-bold capitalize transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 drop-shadow-2xl">
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-accent/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-end p-6">
+                    <p className="text-white text-lg font-bold capitalize transform translate-y-8 group-hover:translate-y-0 transition-all duration-700 drop-shadow-2xl animate-slide-up">
                       {image.category} • Design {(index % 10) + 1}
                     </p>
+                  </div>
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+                    <Sparkles className="w-6 h-6 text-white animate-spin-slow" />
                   </div>
                 </div>
               </Card>
@@ -228,11 +227,11 @@ const Index = () => {
             Ready to book your appointment? Contact us through your preferred platform
           </p>
           
-          <Card className="p-10 backdrop-blur-sm bg-card/80 border-2 border-primary/20 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 animate-scale-in mb-16 rounded-2xl">
+          <Card className="p-10 backdrop-blur-sm bg-card/90 border-2 border-primary/30 hover:border-primary hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 animate-scale-in mb-16 rounded-2xl hover:animate-pulse-glow">
             <div className="flex flex-wrap gap-6 justify-center">
               <Button 
                 size="lg" 
-                className="flex items-center gap-3 px-10 py-6 bg-gradient-to-r from-primary to-accent hover:shadow-2xl hover:shadow-primary/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 rounded-xl text-lg font-semibold"
+                className="flex items-center gap-3 px-10 py-6 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-shimmer hover:shadow-2xl hover:shadow-primary/60 transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 rounded-xl text-lg font-semibold"
                 asChild
               >
                 <a href="https://instagram.com/artbyrutu" target="_blank" rel="noopener noreferrer">
@@ -244,7 +243,7 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="flex items-center gap-3 px-10 py-6 border-2 border-primary/50 hover:border-primary hover:bg-primary/10 backdrop-blur-sm transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 rounded-xl text-lg font-semibold"
+                className="flex items-center gap-3 px-10 py-6 border-2 border-primary/60 hover:border-primary hover:bg-gradient-to-r hover:from-primary/20 hover:to-accent/20 backdrop-blur-sm transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 rounded-xl text-lg font-semibold hover:shadow-elegant"
                 asChild
               >
                 <a href="tel:+1234567890">
@@ -256,7 +255,7 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="flex items-center gap-3 px-10 py-6 border-2 border-accent/50 hover:border-accent hover:bg-accent/10 backdrop-blur-sm transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 rounded-xl text-lg font-semibold"
+                className="flex items-center gap-3 px-10 py-6 border-2 border-accent/60 hover:border-accent hover:bg-gradient-to-r hover:from-accent/20 hover:to-primary/20 backdrop-blur-sm transition-all duration-700 transform hover:scale-110 hover:-translate-y-2 rounded-xl text-lg font-semibold hover:shadow-elegant"
                 asChild
               >
                 <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
